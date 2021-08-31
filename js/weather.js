@@ -14,12 +14,12 @@ const loadWeather = () => {
     temp.innerHTML = '';
     const main = document.getElementById('weather-main');
     main.innerHTML = '';
-    spinners.classList.remove('d-none');
+
     if (searchVal == '') {
-        spinners.classList.add('d-none');
         city.innerHTML = 'please search a valid city name';
     }
     else {
+        spinners.classList.remove('d-none');
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchVal}&appid=${key}`)
             .then(response => response.json())
             .then(data => displayWeatherData((data)))
@@ -33,14 +33,15 @@ const displayWeatherData = weather => {
     } else {
         spinners.classList.add('d-none');
 
-        // weather city
-        city.innerHTML = `${weather.name}`;
-
         // weather img
         const img = document.getElementById('img');
         const weatherIconCode = `${weather.weather[0].icon}`;
         const weatherIcon = `https://openweathermap.org/img/wn/${weatherIconCode}@2x.png`
         img.src = `${weatherIcon}`;
+
+        // weather city
+        city.innerHTML = `${weather.name}`;
+
 
         // weather temperature
         const temp = document.getElementById('temperature');
