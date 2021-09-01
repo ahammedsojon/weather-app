@@ -31,8 +31,6 @@ const displayWeatherData = weather => {
         spinners.classList.add('d-none');
         city.innerHTML = 'please search a valid city name';
     } else {
-        spinners.classList.add('d-none');
-
         // weather img
         const img = document.getElementById('img');
         const weatherIconCode = `${weather.weather[0].icon}`;
@@ -52,4 +50,6 @@ const displayWeatherData = weather => {
         const main = document.getElementById('weather-main');
         main.innerText = `${weather.weather[0].main}`;
     }
+    spinners.classList.add('d-none');
+    document.getElementById('weather-container').classList.remove('d-none');
 }
